@@ -11,6 +11,10 @@
 
 Ling-Coder-Lite is a MoE LLM provided and open-sourced by InclusionAI, which has 16.8 billion parameters with 2.75 billion activated parameters. Ling-Coder-Lite performs impressively on coding tasks compared to existing models in the industry. Specifically, Ling-Coder-Lite further pre-training from an intermediate checkpoint of Ling-Lite, incorporating an additional 3 trillion tokens. This extended pre-training significantly boosts the coding abilities of Ling-Lite, while preserving its strong performance in general language tasks.
 
+<p align="center">
+    <img src="./figures/data-accuracy-efficiency.png" width="1500"/>
+<p>
+
 ## Model Downloads
 
 You can download the following table to see the various parameters for your use case. If you are located in mainland China, we also provide the model on ModelScope.cn to speed up the download process.
@@ -28,9 +32,21 @@ You can download the following table to see the various parameters for your use 
 
 </div>
 
+## Dataset Downloads
+
+<div align="center">
+
+|   **Model**    | **Samples** |                                                                     **Download**                                                                     |
+| :------------: | :----------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Ling-Coder-SyntheticQA |        24M         | [🤗 HuggingFace](https://huggingface.co/datasets/inclusionAI/Ling-Coder-SyntheticQA) <br>[🤖 ModelScope](https://modelscope.cn/datasets/inclusionAI/Ling-Coder-SyntheticQA) |
+| Ling-Coder-SFT  |        5M         |      [🤗 HuggingFace](https://huggingface.co/datasets/inclusionAI/Ling-Coder-SFT) <br>[🤖 ModelScope](https://modelscope.cn/datasets/inclusionAI/Ling-Coder-SFT)      |
+| Ling-Coder-DPO  |        250K         | [🤗 HuggingFace](https://huggingface.co/datasets/inclusionAI/Ling-Coder-DPO) <br>[🤖 ModelScope](https://modelscope.cn/datasets/inclusionAI/Ling-Coder-DPO) |
+
+</div>
+
 ## Evaluation
 
-Detailed evaluation results are reported in our [technical report](https://github.com/codefuse-ai/Ling-Coder-Lite/blob/master/Ling_Coder_Lite_Technique_Report.pdf).
+Detailed evaluation results are reported in our [technical report](https://arxiv.org/abs/2503.17793).
 
 ## Quickstart
 
@@ -162,5 +178,13 @@ llamafactory-cli train examples/sft/ling_full_sft.yaml
 This code repository is licensed under [the MIT License](https://github.com/codefuse-ai/Ling-Coder-Lite/blob/master/LICENCE).
 
 ## Citation
+If you find our work is useful or helpful, please feel free to cite our paper as below.
 
-[TBD]
+```
+@article{team2025every,
+    title={Every Sample Matters: Leveraging Mixture-of-Experts and High-Quality Data for Efficient and Accurate Code LLM}, 
+    author={Codefuse, Ling Team: Wenting Cai, Yuchen Cao, Chaoyu Chen, Chen Chen, Siba Chen, Qing Cui, Peng Di, Junpeng Fang, Zi Gong, Ting Guo, Zhengyu He, Yang Huang, Cong Li, Jianguo Li, Zheng Li, Shijie Lian, BingChang Liu, Songshan Luo, Shuo Mao, Min Shen, Jian Wu, Jiaolong Yang, Wenjie Yang, Tong Ye, Hang Yu, Wei Zhang, Zhenduo Zhang, Hailin Zhao, Xunjin Zheng, Jun Zhou},
+    journal={arXiv preprint arXiv:2503.17793},
+    year={2025}
+}
+```
