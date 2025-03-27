@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Ling-Coder-Lite is a MoE LLM provided and open-sourced by InclusionAI, which has 16.8 billion parameters with 2.75 billion activated parameters. Ling-Coder-Lite performs impressively on coding tasks compared to existing models in the industry. Specifically, Ling-Coder-Lite further pre-training from an intermediate checkpoint of Ling-Lite, incorporating an additional 3 trillion tokens. This extended pre-training significantly boosts the coding abilities of Ling-Lite, while preserving its strong performance in general language tasks.
+Ling-Coder-Lite is a MoE LLM provided and open-sourced by InclusionAI, which has 16.8B parameters with 2.75B activated parameters. This model demonstrates state-of-the-art performance on 12 coding benchmarks, while simultaneously offering competitive latency and throughput compared to code LLMs of similar size. In addition to open-sourcing the model itself, we also release a substantial amount of code-related data, including synthetic QA, SFT and DPO datasets.
 
 <p align="center">
     <img src="./figures/data-accuracy-efficiency.png" width="1500"/>
