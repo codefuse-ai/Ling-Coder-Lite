@@ -177,10 +177,13 @@ This code repository is licensed under [the MIT License](https://github.com/code
 If you find our work is useful or helpful, please feel free to cite our paper as below.
 
 ```
-@article{team2025every,
-    title={Every Sample Matters: Leveraging Mixture-of-Experts and High-Quality Data for Efficient and Accurate Code LLM}, 
-    author={Codefuse, Ling Team: Wenting Cai, Yuchen Cao, Chaoyu Chen, Chen Chen, Siba Chen, Qing Cui, Peng Di, Junpeng Fang, Zi Gong, Ting Guo, Zhengyu He, Yang Huang, Cong Li, Jianguo Li, Zheng Li, Shijie Lian, BingChang Liu, Songshan Luo, Shuo Mao, Min Shen, Jian Wu, Jiaolong Yang, Wenjie Yang, Tong Ye, Hang Yu, Wei Zhang, Zhenduo Zhang, Hailin Zhao, Xunjin Zheng, Jun Zhou},
-    journal={arXiv preprint arXiv:2503.17793},
-    year={2025}
+@misc{codefuse2025samplemattersleveragingmixtureofexperts,
+      title={Every Sample Matters: Leveraging Mixture-of-Experts and High-Quality Data for Efficient and Accurate Code LLM}, 
+      author={Codefuse and Ling Team},
+      year={2025},
+      eprint={2503.17793},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.17793}, 
 }
 ```
