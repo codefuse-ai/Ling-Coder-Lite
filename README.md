@@ -25,6 +25,7 @@ You can download the following table to see the various parameters for your use 
 | :------------: | :---------------: | :-------------------: | :----------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
 | Ling-Coder-lite-base |       16.8B        |         2.75B         |        16K         | [🤗 HuggingFace](https://huggingface.co/inclusionAI/Ling-Coder-lite-base) <br>[🤖 ModelScope](https://modelscope.cn/models/inclusionAI/Ling-Coder-lite-base) |
 |   Ling-Coder-lite    |       16.8B        |         2.75B         |        16K         |      [🤗 HuggingFace](https://huggingface.co/inclusionAI/Ling-Coder-lite) <br>[🤖 ModelScope](https://modelscope.cn/models/inclusionAI/Ling-Coder-lite)      |
+|   Ling-Coder-lite-GPTQ-Int8    |       16.8B        |         2.75B         |        16K         |      [🤗 HuggingFace](https://huggingface.co/inclusionAI/Ling-Coder-lite-GPTQ-Int8) <br>[🤖 ModelScope](https://modelscope.cn/models/inclusionAI/Ling-Coder-lite-GPTQ-Int8)      |
 
 </div>
 
@@ -42,7 +43,7 @@ You can download the following table to see the various parameters for your use 
 
 ## Evaluation
 
-Detailed evaluation results are reported in our [technical report](https://arxiv.org/abs/2503.17793).
+Detailed evaluation results are reported in our [technical report](https://arxiv.org/abs/2503.17793). For detailed evaluation code, please refer to the evaluation method of Ling-Coder-Lite in [CodeFuse-Evaluation](https://github.com/codefuse-ai/codefuse-evaluation).
 
 ## Quickstart
 
@@ -148,6 +149,53 @@ vllm serve inclusionAI/Ling-lite \
 ```
 
 For detailed guidance, please refer to the vLLM [`instructions`](https://docs.vllm.ai/en/latest/).
+
+### vLLM GPTQ Int8
+
+#### Environment Preparation
+
+Requirement: `vllm==0.6.3.post1`. 
+
+Patch `ling_gptq.patch` onto vLLM by executing:
+```bash
+patch -p1 < ling_gptq.patch -d $(python -c "from importlib.util import find_spec; print(find_spec('vllm').submodule_search_locations[0])")
+```
+
+#### Inference Example
+
+```python
+from vllm import LLM
+from vllm.sampling_params import SamplingParams
+from transformers import AutoTokenizer
+
+model_name = "inclusionAI/Ling-Coder-lite-GPTQ-Int8"
+
+model = LLM(model_name, trust_remote_code=True, gpu_memory_utilization=0.80, max_model_len=4096)
+
+tokenizer = AutoTokenizer.from_pretrained(
+    model_name, 
+    trust_remote_code=True
+)
+
+prompt = "Write a quick sort algorithm in python."
+messages = [
+    {"role": "user", "content": prompt}
+]
+text = tokenizer.apply_chat_template(
+    messages,
+    tokenize=False,
+    add_generation_prompt=True
+)
+
+sample_params = SamplingParams(max_tokens=1024, ignore_eos=False)
+outputs = model.generate(text, sampling_params=sample_params, prompt_token_ids=None)
+
+for output in outputs:
+    generated_text = output.outputs[0].text
+    print(generated_text)
+```
+
+Note: No extra parameters required by this GPTQ Int8 quantized model for vLLM online serving.
 
 ## Finetuning
 
